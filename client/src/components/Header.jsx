@@ -20,13 +20,13 @@ const Header = ({ isGuest = false, onLoginClick }) => {
 
       {/* Left — Brand */}
       <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#7c3aed] shadow-[0_0_12px_rgba(124,58,237,0.4)]">
+        <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#7c3aed]">
           <img className="w-4 h-4" src={whiterobo} alt="Ultron AI" />
         </div>
         <div>
-          <span className="text-[#fafafa] text-sm font-semibold tracking-tight">Ultron</span>
-          <p className="text-[10px] text-[#52525b] font-medium leading-none mt-0.5 hidden sm:block">
-            {isGuest ? "Guest session · history not saved" : "AI Writing Assistant"}
+          <span className="text-[#fafafa] text-sm font-medium">Ultron</span>
+          <p className="text-[11px] text-[#52525b] leading-none mt-0.5 hidden sm:block">
+            {isGuest ? "Guest session · history not saved" : "AI writing assistant"}
           </p>
         </div>
       </div>
@@ -36,38 +36,32 @@ const Header = ({ isGuest = false, onLoginClick }) => {
         {/* New Session */}
         <button
           onClick={handleNewSession}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#a1a1aa] bg-[#18181b] border border-[#27272a] hover:border-[#3f3f46] hover:text-[#fafafa] hover:bg-[#1f1f23] transition-all duration-200 active:scale-95"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#71717a] bg-[#111113] border border-[#1f1f23] hover:border-[#27272a] hover:text-[#a1a1aa] transition-colors duration-150"
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M12 5v14M5 12h14"/>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
           </svg>
           New chat
         </button>
 
         {isGuest ? (
-          /* Guest → Save Chat */
           <button
             id="header-login-btn"
             onClick={onLoginClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-white bg-[#7c3aed] hover:bg-[#6d28d9] transition-all duration-200 active:scale-95 shadow-[0_0_12px_rgba(124,58,237,0.3)]"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-white bg-[#7c3aed] hover:bg-[#6d28d9] transition-colors duration-150"
           >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-              <polyline points="17,21 17,13 7,13 7,21"/>
-              <polyline points="7,3 7,8 15,8"/>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10,17 15,12 10,7" /><line x1="15" y1="12" x2="3" y2="12" />
             </svg>
-            Save chat
+            Sign in
           </button>
         ) : (
-          /* Logged-in → Logout */
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#a1a1aa] bg-[#18181b] border border-[#27272a] hover:border-[#ef4444]/40 hover:text-[#ef4444] hover:bg-[#1f1f23] transition-all duration-200 active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#71717a] bg-[#111113] border border-[#1f1f23] hover:border-[#ef4444]/30 hover:text-[#f87171] transition-colors duration-150"
           >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-              <polyline points="16,17 21,12 16,7"/>
-              <line x1="21" y1="12" x2="9" y2="12"/>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16,17 21,12 16,7" /><line x1="21" y1="12" x2="9" y2="12" />
             </svg>
             Sign out
           </button>

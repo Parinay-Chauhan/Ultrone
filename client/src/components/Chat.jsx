@@ -183,7 +183,7 @@ const Chat = () => {
   // Show nothing until chat is fully initialized — prevents flash of wrong UI
   if (!isInitialized) {
     return (
-      <div style={{ backgroundColor: '#000000', width: '100vw', height: '100dvh' }} />
+      <div style={{ backgroundColor: '#09090b', width: '100vw', height: '100dvh' }} />
     );
   }
 

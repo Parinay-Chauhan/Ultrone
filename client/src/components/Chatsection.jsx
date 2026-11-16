@@ -5,92 +5,82 @@ import remarkGfm from "remark-gfm";
 
 export const defaultMessages = [];
 
-// Custom markdown components — ChatGPT/Claude style
+// Custom markdown components — focused, quiet, content-first
 const markdownComponents = {
-  // Headings
   h1: ({ children }) => (
-    <h1 className="text-xl font-bold text-white mt-5 mb-3 leading-tight">{children}</h1>
+    <h1 className="text-lg font-semibold text-[#fafafa] mt-5 mb-2 leading-snug">{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-lg font-bold text-white mt-4 mb-2 leading-tight">{children}</h2>
+    <h2 className="text-base font-semibold text-[#fafafa] mt-4 mb-2 leading-snug">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-base font-semibold text-[#e2e8f0] mt-3 mb-2">{children}</h3>
+    <h3 className="text-sm font-medium text-[#a1a1aa] mt-3 mb-1.5">{children}</h3>
   ),
 
-  // Paragraphs
   p: ({ children }) => (
-    <p className="text-[#dbe4f0] leading-7 mb-3 last:mb-0">{children}</p>
+    <p className="text-[#d4d4d8] leading-7 mb-3 last:mb-0">{children}</p>
   ),
 
-  // Bold & Italic
   strong: ({ children }) => (
-    <strong className="font-semibold text-white">{children}</strong>
+    <strong className="font-medium text-[#fafafa]">{children}</strong>
   ),
   em: ({ children }) => (
-    <em className="italic text-[#c4b5fd]">{children}</em>
+    <em className="italic text-[#a1a1aa]">{children}</em>
   ),
 
-  // Unordered list
   ul: ({ children }) => (
-    <ul className="my-3 ml-2 space-y-1.5">{children}</ul>
+    <ul className="my-3 ml-1 space-y-1.5">{children}</ul>
   ),
-  // Ordered list
   ol: ({ children }) => (
     <ol className="my-3 ml-2 space-y-1.5 list-decimal list-inside">{children}</ol>
   ),
   li: ({ children }) => (
-    <li className="flex gap-2 text-[#dbe4f0] leading-6">
-      <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[#7c3aed]" />
+    <li className="flex gap-2.5 text-[#d4d4d8] leading-6">
+      <span className="mt-2.5 shrink-0 w-1 h-1 rounded-full bg-[#52525b]" />
       <span>{children}</span>
     </li>
   ),
 
-  // Horizontal rule
-  hr: () => <hr className="my-4 border-[#333]" />,
+  hr: () => <hr className="my-4 border-[#1f1f23]" />,
 
-  // Blockquote
   blockquote: ({ children }) => (
-    <blockquote className="border-l-2 border-[#7c3aed] pl-4 my-3 text-[#94a3b8] italic">
+    <blockquote className="border-l-2 border-[#27272a] pl-4 my-3 text-[#71717a]">
       {children}
     </blockquote>
   ),
 
-  // Inline code
   code: ({ inline, children }) =>
     inline ? (
-      <code className="bg-[#1e1e2e] text-[#c4b5fd] px-1.5 py-0.5 rounded text-[0.8em] font-mono">
+      <code className="bg-[#141416] text-[#e4e4e7] px-1.5 py-0.5 rounded text-[0.8em] font-mono border border-[#27272a]">
         {children}
       </code>
     ) : (
-      <pre className="bg-[#0d0d14] border border-[#2d2d3a] rounded-xl p-4 my-3 overflow-x-auto">
-        <code className="text-[#e2e8f0] text-xs font-mono leading-6">{children}</code>
+      <pre className="bg-[#0c0c0e] border border-[#1f1f23] rounded-xl p-4 my-3 overflow-x-auto">
+        <code className="text-[#d4d4d8] text-xs font-mono leading-6">{children}</code>
       </pre>
     ),
 
-  // Tables (GFM)
   table: ({ children }) => (
     <div className="overflow-x-auto my-4">
       <table className="w-full text-sm border-collapse">{children}</table>
     </div>
   ),
-  thead: ({ children }) => <thead className="bg-[#1a1a2e]">{children}</thead>,
+  thead: ({ children }) => <thead className="bg-[#111113]">{children}</thead>,
   th: ({ children }) => (
-    <th className="border border-[#2d2d3a] px-3 py-2 text-left text-[#a78bfa] font-semibold">
+    <th className="border border-[#1f1f23] px-3 py-2 text-left text-[#71717a] font-medium text-xs">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="border border-[#2d2d3a] px-3 py-2 text-[#dbe4f0]">{children}</td>
+    <td className="border border-[#1f1f23] px-3 py-2 text-[#d4d4d8]">{children}</td>
   ),
 
-  // Links
   a: ({ href, children }) => (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-[#a78bfa] underline underline-offset-2 hover:text-[#c4b5fd] transition-colors"
+      className="text-[#7c3aed] underline underline-offset-2 hover:text-[#8b5cf6] transition-colors"
     >
       {children}
     </a>
@@ -99,62 +89,57 @@ const markdownComponents = {
 
 const Chatsection = ({ messages = defaultMessages }) => {
   return (
-    <section className="w-full flex-1 min-h-0 bg-black/20 px-4 md:px-8 py-6 overflow-x-hidden overflow-y-auto">
-      <div className="flex min-h-full flex-col justify-end gap-5 max-w-3xl mx-auto w-full">
+    <section className="w-full flex-1 min-h-0 px-4 md:px-8 py-6 overflow-x-hidden overflow-y-auto">
+      <div className="flex min-h-full flex-col justify-end gap-6 max-w-3xl mx-auto w-full">
         {messages.map((message) => {
           const isUser = message.role === "user";
 
           return (
             <div
               key={message.id}
-              className={`flex w-full items-end gap-2 md:gap-3 ${
+              className={`flex w-full items-start gap-3 ${
                 isUser ? "justify-end" : "justify-start"
               }`}
             >
               {/* AI avatar */}
               {!isUser && (
-                <div className="flex size-8 md:size-9 shrink-0 items-center justify-center rounded-xl bg-[#7c3aed] self-start mt-1">
-                  <img className="size-5 md:size-5" src={bot} alt="AI assistant" />
+                <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-[#7c3aed] mt-0.5">
+                  <img className="size-4" src={bot} alt="Ultron AI" />
                 </div>
               )}
 
               <div
-                className={`max-w-[88%] md:max-w-[72%] rounded-2xl px-4 md:px-5 py-3 md:py-4 shadow-lg ${
+                className={`max-w-[88%] md:max-w-[72%] ${
                   isUser
-                    ? "rounded-br-md bg-[#7c3aed] text-white text-sm leading-6"
-                    : "rounded-bl-md border border-[#2d2d3a] bg-[#0a0a10] text-sm"
+                    ? "rounded-2xl rounded-br-sm bg-[#7c3aed] text-white text-sm leading-6 px-4 py-2.5"
+                    : "text-sm pl-3 border-l border-[#27272a]"
                 }`}
               >
-                {/* AI label */}
+                {/* AI name */}
                 {!isUser && (
-                  <p className="mb-2 text-[10px] font-bold tracking-widest text-[#7c3aed] uppercase">
-                    Ultron
-                  </p>
+                  <p className="text-[11px] font-medium text-[#52525b] mb-2">Ultron</p>
                 )}
 
                 {/* Message content */}
                 {isUser ? (
                   <p className="text-sm leading-6">{message.text}</p>
                 ) : message.text ? (
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={markdownComponents}
-                  >
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                     {message.text}
                   </ReactMarkdown>
                 ) : (
                   // Loading dots
-                  <div className="flex gap-1.5 items-center py-1">
-                    <div className="w-2 h-2 bg-[#7c3aed] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <div className="w-2 h-2 bg-[#7c3aed] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <div className="w-2 h-2 bg-[#7c3aed] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="flex gap-1 items-center py-2">
+                    <div className="w-1.5 h-1.5 bg-[#3f3f46] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                    <div className="w-1.5 h-1.5 bg-[#3f3f46] rounded-full animate-bounce" style={{ animationDelay: "120ms" }} />
+                    <div className="w-1.5 h-1.5 bg-[#3f3f46] rounded-full animate-bounce" style={{ animationDelay: "240ms" }} />
                   </div>
                 )}
               </div>
 
               {/* User avatar */}
               {isUser && (
-                <div className="flex size-8 md:size-9 shrink-0 items-center justify-center rounded-xl border border-[#7c3aed] bg-[#140b22] text-xs font-bold text-white self-end">
+                <div className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-[#27272a] bg-[#18181b] text-xs font-medium text-[#a1a1aa] mt-0.5">
                   U
                 </div>
               )}

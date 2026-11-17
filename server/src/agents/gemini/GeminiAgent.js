@@ -26,7 +26,7 @@ class GeminiAgent {
 
             this.genAI = new GoogleGenerativeAI(apiKey);
             // We use the 1.5 flash model which is very fast and suitable for general chat
-            this.model = this.genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+            this.model = this.genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
             this.channel.on("message.new", this.handleMessage);
 
@@ -95,7 +95,7 @@ class GeminiAgent {
             let channelMessage = null;
             try {
                 const model = this.genAI.getGenerativeModel({
-                    model: "gemini-2.0-flash",
+                    model: "gemini-2.5-flash",
                     systemInstruction: instructions,
                 });
 
@@ -156,7 +156,7 @@ class GeminiAgent {
                 });
 
                 // Fallback mechanism to handle 503 High Demand errors
-                const modelsToTry = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-2.5-flash"];
+                const modelsToTry = ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-flash-latest"];
                 let resultStream = null;
                 let lastError = null;
 

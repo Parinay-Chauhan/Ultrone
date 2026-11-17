@@ -10,8 +10,9 @@ const createAgent = async (
     channel_id
 ) => {
     const token = serverClient.createToken(user_id);
+    const streamKey = process.env.STREAM_API_KEY || apiKey;
     // This is the client for the AI bot user
-    const chatClient = new StreamChat(apiKey, {
+    const chatClient = new StreamChat(streamKey, {
         allowServerSideConnect: true,
         timeout: 60000
     });

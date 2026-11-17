@@ -19,10 +19,10 @@ html, body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #242838; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #2e3448; }
+::-webkit-scrollbar-thumb { background: #333537; border-radius: 9999px; transition: background-color 0.15s ease; }
+::-webkit-scrollbar-thumb:hover { background: #EDEDE5; }
 
 /* Fade in */
 @keyframes fadeUp {

@@ -1,24 +1,25 @@
-/* Chrome, Edge, Safari */
+/* Modern Slim Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000; /* Black track */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7c3aed; /* Purple thumb */
-  border-radius: 10px;
-  border: 2px solid #000000;
+  background: #333537;
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9333ea; /* Lighter purple on hover */
+  background: #EDEDE5;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #7c3aed #000000;
+  scrollbar-color: #333537 transparent;
 }

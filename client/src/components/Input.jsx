@@ -69,10 +69,10 @@ const Input = ({ inputRef, handleSubmit }) => {
       <div className="w-full max-w-[800px]">
         {/* Input box */}
         <div
-          className={`bg-[#141720] border border-[#2e3448] transition-all duration-200 ${
+          className={`bg-[#141720] border border-[#2e3448] rounded-[24px] transition-[border-color,box-shadow] duration-150 ${
             isMultiLine
-              ? "flex flex-col rounded-[18px] px-4 pt-3 pb-2.5"
-              : "flex items-center gap-2 rounded-full px-4 py-2 min-h-[50px]"
+              ? "flex flex-col px-4 pt-3 pb-2.5"
+              : "flex items-center gap-2 px-4 py-2 min-h-[50px]"
           }`}
           style={{ "--tw-shadow": "none" }}
           onFocusCapture={(e) => e.currentTarget.style.cssText = "border-color: rgba(34,211,238,0.28); box-shadow: 0 0 0 3px rgba(34,211,238,0.07);"}

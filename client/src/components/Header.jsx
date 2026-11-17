@@ -16,30 +16,32 @@ const Header = ({ isGuest = false, onLoginClick }) => {
   };
 
   return (
-    <header className="w-full shrink-0 flex items-center justify-between px-4 md:px-6 py-3 border-b border-[#1f1f23] bg-[#09090b]/95 backdrop-blur-sm">
+    <header className="w-full shrink-0 h-14 border-b border-[#1e1e1e] bg-[#0c0c0c]">
+      <div className="max-w-3xl mx-auto flex items-center justify-between h-full px-6">
 
       {/* Left — Brand */}
-      <div className="flex items-center gap-3">
-        <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-[#7c3aed]">
-          <img className="w-4 h-4" src={whiterobo} alt="Ultron AI" />
+      <div className="flex items-center gap-2.5">
+        <div className="w-7 h-7 rounded-lg bg-[#f0f0f0] flex items-center justify-center shrink-0">
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#0a0a0a] text-xs font-semibold leading-none select-none">U</span>
         </div>
-        <div>
-          <span className="text-[#fafafa] text-sm font-medium">Ultron</span>
-          <p className="text-[11px] text-[#52525b] leading-none mt-0.5 hidden sm:block">
-            {isGuest ? "Guest session · history not saved" : "AI writing assistant"}
-          </p>
-        </div>
+        <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#d8d8d8] text-base font-semibold tracking-tight">
+          Ultrone
+        </span>
+        {isGuest && (
+          <span className="hidden sm:inline text-[11px] text-[#333] bg-[#161616] border border-[#222] px-2 py-0.5 rounded-full">
+            guest
+          </span>
+        )}
       </div>
 
-      {/* Right — Actions */}
-      <div className="flex items-center gap-2">
-        {/* New Session */}
+      {/* Right */}
+      <div className="flex items-center gap-1.5">
         <button
           onClick={handleNewSession}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#71717a] bg-[#111113] border border-[#1f1f23] hover:border-[#27272a] hover:text-[#a1a1aa] transition-colors duration-150"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13px] text-[#555] hover:text-[#999] hover:bg-[#161616] transition-colors duration-100"
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
           New chat
         </button>
@@ -48,24 +50,19 @@ const Header = ({ isGuest = false, onLoginClick }) => {
           <button
             id="header-login-btn"
             onClick={onLoginClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-white bg-[#7c3aed] hover:bg-[#6d28d9] transition-colors duration-150"
+            className="px-4 py-2 rounded-lg text-[13px] font-medium text-[#0a0a0a] bg-[#e8e8e8] hover:bg-white transition-colors duration-100"
           >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10,17 15,12 10,7" /><line x1="15" y1="12" x2="3" y2="12" />
-            </svg>
             Sign in
           </button>
         ) : (
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium text-[#71717a] bg-[#111113] border border-[#1f1f23] hover:border-[#ef4444]/30 hover:text-[#f87171] transition-colors duration-150"
+            className="px-4 py-2 rounded-lg text-[13px] text-[#555] hover:text-[#999] hover:bg-[#161616] transition-colors duration-100"
           >
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16,17 21,12 16,7" /><line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
             Sign out
           </button>
         )}
+      </div>
       </div>
     </header>
   );

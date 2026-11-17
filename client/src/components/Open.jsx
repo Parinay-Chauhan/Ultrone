@@ -74,6 +74,7 @@ const Open = ({ inputRef, username, isGuest = false, onLoginClick }) => {
     if (inputRef.current) {
       inputRef.current.value = text;
       inputRef.current.focus();
+      inputRef.current.dispatchEvent(new Event("input", { bubbles: true }));
     }
   }
 

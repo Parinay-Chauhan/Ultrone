@@ -41,33 +41,36 @@ const LoginModal = ({ onClose, apiBaseUrl }) => {
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 z-40 bg-black/70" onClick={onClose} />
+      <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px]" onClick={onClose} />
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="relative w-full max-w-xs bg-[#111] border border-[#1a1a1a] rounded-2xl overflow-hidden fade-up">
+        <div className="relative w-full max-w-[340px] bg-[#141720] border border-[#242838] rounded-2xl overflow-hidden fade-up">
+
+          {/* Top cyan accent line */}
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#22d3ee]/30 to-transparent" />
 
           {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-3.5 right-3.5 w-7 h-7 flex items-center justify-center rounded-lg text-[#2a2a2a] hover:text-[#555] hover:bg-[#161616] transition-colors duration-100"
+            className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-lg text-[#3a4260] hover:text-[#dde2f0] hover:bg-[#1c2030] transition-colors duration-150"
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
           </button>
 
-          <div className="p-6">
+          <div className="p-7">
             {/* Logo mark */}
-            <div className="w-8 h-8 rounded-lg bg-[#f0f0f0] flex items-center justify-center mx-auto mb-5">
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#0a0a0a] text-sm font-semibold leading-none">U</span>
+            <div className="w-[32px] h-[32px] bg-[#1c2030] border border-[#2e3448] rounded-[8px] flex items-center justify-center mx-auto mb-5 text-[13px] font-bold text-[#22d3ee] select-none">
+              U
             </div>
 
             {/* Title */}
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#f0f0f0] text-lg font-semibold text-center tracking-tight">
+            <h2 className="text-[#eef1fa] text-[18px] font-semibold text-center tracking-tight mb-1">
               {mode === "login" ? "Sign in" : "Create account"}
             </h2>
-            <p className="text-[#404040] text-xs text-center mt-1.5 mb-6">
+            <p className="text-[#5a6180] text-[13px] text-center mb-6">
               {mode === "login"
                 ? "Save and access your chat history"
                 : "Register to save your conversations"}
@@ -76,34 +79,32 @@ const LoginModal = ({ onClose, apiBaseUrl }) => {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="block text-[#404040] text-xs mb-1.5">Username</label>
+                <label className="block text-[#5a6180] text-[12px] mb-1.5">Username</label>
                 <input
-                  id="login-username"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="your_username"
                   autoComplete="username"
                   autoFocus
-                  className="w-full h-9 bg-[#0a0a0a] border border-[#1a1a1a] hover:border-[#222] focus:border-[#2a2a2a] rounded-lg px-3 text-[#f0f0f0] text-sm outline-none transition-colors duration-100 placeholder-[#222]"
+                  className="w-full h-9 bg-[#0d0f14] border border-[#242838] hover:border-[#2e3448] focus:border-[rgba(34,211,238,0.28)] rounded-lg px-3 text-[#dde2f0] text-[13px] outline-none transition-colors duration-150 placeholder-[#3a4260] caret-[#22d3ee]"
                 />
               </div>
 
               <div>
-                <label className="block text-[#404040] text-xs mb-1.5">Password</label>
+                <label className="block text-[#5a6180] text-[12px] mb-1.5">Password</label>
                 <input
-                  id="login-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   autoComplete="current-password"
-                  className="w-full h-9 bg-[#0a0a0a] border border-[#1a1a1a] hover:border-[#222] focus:border-[#2a2a2a] rounded-lg px-3 text-[#f0f0f0] text-sm outline-none transition-colors duration-100 placeholder-[#222]"
+                  className="w-full h-9 bg-[#0d0f14] border border-[#242838] hover:border-[#2e3448] focus:border-[rgba(34,211,238,0.28)] rounded-lg px-3 text-[#dde2f0] text-[13px] outline-none transition-colors duration-150 placeholder-[#3a4260] caret-[#22d3ee]"
                 />
               </div>
 
               {error && (
-                <p className="text-[#f87171] text-xs bg-[#f87171]/5 border border-[#f87171]/10 rounded-lg px-3 py-2">
+                <p className="text-[#f87171] text-[12px] bg-[#f87171]/5 border border-[#f87171]/15 rounded-lg px-3 py-2">
                   {error}
                 </p>
               )}
@@ -111,11 +112,11 @@ const LoginModal = ({ onClose, apiBaseUrl }) => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-9 bg-[#f0f0f0] hover:bg-white active:scale-[0.98] disabled:opacity-30 disabled:cursor-not-allowed rounded-lg text-[#0a0a0a] text-sm font-medium transition-colors duration-100 mt-1"
+                className="w-full h-9 bg-[#22d3ee] hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-[#0d0f14] text-[13px] font-semibold transition-[opacity,transform] duration-150 mt-1 border-none cursor-pointer"
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="animate-spin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
                     </svg>
                     Please wait
@@ -126,12 +127,12 @@ const LoginModal = ({ onClose, apiBaseUrl }) => {
               </button>
             </form>
 
-            <p className="text-center text-[#2a2a2a] text-xs mt-5">
+            <p className="text-center text-[#3a4260] text-[12px] mt-5">
               {mode === "login" ? "No account?" : "Have an account?"}{" "}
               <button
                 type="button"
                 onClick={() => { setMode(mode === "login" ? "register" : "login"); setError(""); }}
-                className="text-[#555] hover:text-[#737373] transition-colors duration-100"
+                className="text-[#22d3ee] opacity-80 hover:opacity-100 font-medium transition-opacity duration-150 bg-transparent border-none cursor-pointer text-[12px]"
               >
                 {mode === "login" ? "Register" : "Sign in"}
               </button>
@@ -140,7 +141,7 @@ const LoginModal = ({ onClose, apiBaseUrl }) => {
             <button
               type="button"
               onClick={onClose}
-              className="w-full text-center text-[#222] hover:text-[#333] text-xs mt-3 transition-colors duration-100"
+              className="w-full text-center text-[#3a4260] hover:text-[#5a6180] text-[12px] mt-3 transition-colors duration-150 bg-transparent border-none cursor-pointer"
             >
               Continue as guest
             </button>

@@ -1,5 +1,4 @@
 import React from "react";
-import whiterobo from "../assets/white-robo.svg";
 
 const Header = ({ isGuest = false, onLoginClick }) => {
 
@@ -16,53 +15,52 @@ const Header = ({ isGuest = false, onLoginClick }) => {
   };
 
   return (
-    <header className="w-full shrink-0 h-14 border-b border-[#1e1e1e] bg-[#0c0c0c]">
-      <div className="max-w-3xl mx-auto flex items-center justify-between h-full px-6">
+    <header className="w-full shrink-0 h-[52px] border-b border-[#242838] bg-[#0d0f14]/90 backdrop-blur-[10px] sticky top-0 z-50">
+      <div className="max-w-[840px] mx-auto flex items-center justify-between h-full px-5 sm:px-6">
 
-      {/* Left — Brand */}
-      <div className="flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-lg bg-[#f0f0f0] flex items-center justify-center shrink-0">
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#0a0a0a] text-xs font-semibold leading-none select-none">U</span>
-        </div>
-        <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#d8d8d8] text-base font-semibold tracking-tight">
+        {/* Brand */}
+        <div className="flex items-center gap-[9px] text-[14px] font-semibold tracking-[-0.01em] text-[#dde2f0]">
+          <div className="w-[28px] h-[28px] bg-[#1c2030] border border-[#2e3448] rounded-[7px] flex items-center justify-center text-[12px] font-bold text-[#22d3ee] shrink-0 select-none">
+            U
+          </div>
           Ultrone
-        </span>
-        {isGuest && (
-          <span className="hidden sm:inline text-[11px] text-[#333] bg-[#161616] border border-[#222] px-2 py-0.5 rounded-full">
-            guest
-          </span>
-        )}
-      </div>
+          {isGuest && (
+            <span className="text-[12px] text-[#5a6180] font-normal">· guest</span>
+          )}
+        </div>
 
-      {/* Right */}
-      <div className="flex items-center gap-1.5">
-        <button
-          onClick={handleNewSession}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-[13px] text-[#555] hover:text-[#999] hover:bg-[#161616] transition-colors duration-100"
-        >
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-          New chat
-        </button>
+        {/* Right actions */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleNewSession}
+            className="flex items-center gap-[5px] px-3 py-[5px] bg-transparent border-none text-[#5a6180] text-[13px] font-normal cursor-pointer rounded-md hover:text-[#dde2f0] hover:bg-[#1c2030] transition-colors duration-150"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            New chat
+          </button>
 
-        {isGuest ? (
-          <button
-            id="header-login-btn"
-            onClick={onLoginClick}
-            className="px-4 py-2 rounded-lg text-[13px] font-medium text-[#0a0a0a] bg-[#e8e8e8] hover:bg-white transition-colors duration-100"
-          >
-            Sign in
-          </button>
-        ) : (
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 rounded-lg text-[13px] text-[#555] hover:text-[#999] hover:bg-[#161616] transition-colors duration-100"
-          >
-            Sign out
-          </button>
-        )}
-      </div>
+          <div className="w-px h-[18px] bg-[#242838]" />
+
+          {isGuest ? (
+            <button
+              id="header-login-btn"
+              onClick={onLoginClick}
+              className="px-[14px] py-[5px] bg-transparent border border-[#2e3448] text-[#dde2f0] text-[13px] font-medium cursor-pointer rounded-md hover:border-[rgba(34,211,238,0.28)] hover:bg-[rgba(34,211,238,0.10)] transition-colors duration-150"
+            >
+              Sign in
+            </button>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="px-[14px] py-[5px] bg-transparent border border-[#2e3448] text-[#dde2f0] text-[13px] font-medium cursor-pointer rounded-md hover:border-[rgba(34,211,238,0.28)] hover:bg-[rgba(34,211,238,0.10)] transition-colors duration-150"
+            >
+              Sign out
+            </button>
+          )}
+        </div>
+
       </div>
     </header>
   );

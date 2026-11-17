@@ -25,41 +25,41 @@ const Open = ({ inputRef, username, isGuest = false, onLoginClick }) => {
       <div className="flex flex-col items-center justify-center min-h-full px-5 py-12 fade-up">
 
         {/* Logo mark */}
-        <div className="w-10 h-10 rounded-xl bg-[#f0f0f0] flex items-center justify-center mb-7">
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#0a0a0a] text-base font-semibold leading-none select-none">U</span>
+        <div className="w-8 h-8 rounded-lg bg-[#f0f0f0] flex items-center justify-center mb-5">
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif" }} className="text-[#0a0a0a] text-sm font-semibold leading-none select-none">U</span>
         </div>
 
         {/* Headline */}
         <h1
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          className="text-2xl md:text-3xl font-semibold text-[#e8e8e8] text-center tracking-tight leading-snug max-w-sm"
+          className="text-2xl md:text-[1.75rem] font-semibold text-[#e8e8e8] text-center tracking-tight leading-snug"
         >
           {displayName ? `Hi, ${displayName}` : "What can I help you write?"}
         </h1>
 
-        <p className="text-[#555] text-sm mt-2.5 text-center max-w-xs leading-relaxed">
-          Describe what you need — email, post, report, proposal.
+        <p className="text-[#555] text-sm mt-2 text-center leading-relaxed">
+          Describe what you need — email, post, report, or proposal.
         </p>
 
         {/* Guest nudge */}
         {isGuest && (
           <button
             onClick={onLoginClick}
-            className="mt-3 text-xs text-[#444] hover:text-[#777] transition-colors duration-100"
+            className="mt-2 text-xs text-[#3a3a3a] hover:text-[#666] transition-colors duration-100"
           >
             Sign in to save history →
           </button>
         )}
 
-        {/* Suggestion cards */}
-        <div className="mt-8 w-full max-w-lg flex flex-col gap-2">
+        {/* Suggestion cards — 2×2 grid */}
+        <div className="mt-7 w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-2">
           {prompts.map((text, i) => (
             <button
               key={i}
               onClick={() => handleClick(text)}
-              className="w-full text-left px-4 py-3 rounded-xl bg-[#141414] border border-[#222] text-[#888] text-sm leading-snug hover:bg-[#1c1c1c] hover:border-[#333] hover:text-[#ccc] transition-all duration-150 group"
+              className="w-full text-left px-4 py-3.5 rounded-xl bg-[#141414] border border-[#222] text-[#777] text-sm leading-snug hover:bg-[#1a1a1a] hover:border-[#2e2e2e] hover:text-[#bbb] transition-all duration-150 min-h-[64px] flex items-start"
             >
-              <span className="line-clamp-1">{text}</span>
+              <span>{text}</span>
             </button>
           ))}
         </div>

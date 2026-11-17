@@ -33,7 +33,7 @@ const Input = ({ inputRef, handleSubmit }) => {
 
   return (
     <div className="w-full shrink-0 px-4 md:px-6 pb-5 pt-3 bg-[#0c0c0c] border-t border-[#1e1e1e]">
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
         <div className="flex items-center bg-[#141414] border border-[#2a2a2a] rounded-2xl hover:border-[#333] focus-within:border-[#444] transition-colors duration-150">
 
           <input

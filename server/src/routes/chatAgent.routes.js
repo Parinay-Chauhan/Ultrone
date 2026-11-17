@@ -28,10 +28,18 @@ setInterval(async () => {
 // Generate a Stream Chat token for the authenticated user
 router.post("/token", requireApiAuth, async (req, res) => {
   try {
+    const userId = req.user.id || req.user.username;
+    // Ensure user exists in Stream Chat
+    await serverClient.upsertUser({
+      id: userId,
+      name: req.user.username || userId,
+      role: "user",
+    });
+
     const issuedAt = Math.floor(Date.now() / 1000);
     const expiration = issuedAt + 60 * 60; // 1 hour
-    const token = serverClient.createToken(req.user.id, expiration, issuedAt);
-    res.json({ token, userId: req.user.id });
+    const token = serverClient.createToken(userId, expiration, issuedAt);
+    res.json({ token, userId });
   } catch (error) {
     console.error("Error generating token:", error);
     res.status(500).json({ error: "Failed to generate token" });

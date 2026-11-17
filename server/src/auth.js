@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import jwt from "jsonwebtoken";
 import path from "path";
 import { fileURLToPath } from "url";
+import { User } from "./models/user.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -134,6 +135,18 @@ async function findUserByUsername(username) {
     const userId = normalizeUsername(username);
     if (!userId) {
         return null;
+    }
+    try {
+        const mongoUser = await User.findOne({ username: userId });
+        if (mongoUser) {
+            return {
+                id: mongoUser.username,
+                username: mongoUser.username,
+                _id: mongoUser._id,
+            };
+        }
+    } catch (err) {
+        console.error("findUserByUsername MongoDB error:", err.message);
     }
     const users = await readUsers();
     return users.find((user) => user.id === userId) || null;

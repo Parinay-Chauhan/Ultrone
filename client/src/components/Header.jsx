@@ -11,7 +11,10 @@ const Header = ({ isGuest = false, onLoginClick }) => {
     sessionStorage.removeItem('chat_session_id');
     localStorage.removeItem('mejor_session_token');
     const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || (window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://mejor-backend.onrender.com');
-    window.location.href = `${API_BASE_URL}/logout`;
+    try {
+      fetch(`${API_BASE_URL}/api/v1/users/logout`, { method: 'POST', credentials: 'include' }).catch(() => {});
+    } catch {}
+    window.location.href = window.location.origin;
   };
 
   return (

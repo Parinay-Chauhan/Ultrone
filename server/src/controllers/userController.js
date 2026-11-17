@@ -30,9 +30,33 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
 
+  // Generate tokens so new user is logged in automatically
+  const cookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  };
+
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+  user.refreshToken = refreshToken;
+  await user.save({ validateBeforeSave: false });
+
+  setSessionCookie(res, user.username);
+  const sessionToken = createSessionToken(user.username);
+
   return res
     .status(201)
-    .json(new ApiResponse(201, createdUser, "User registered successfully"));
+    .cookie("accessToken", accessToken, cookieOptions)
+    .cookie("refreshToken", refreshToken, cookieOptions)
+    .json(
+      new ApiResponse(201, {
+        user: createdUser,
+        accessToken,
+        refreshToken,
+        sessionToken,
+      }, "User registered successfully")
+    );
 });
 
 // ─── Login User ──────────────────────────────────────────────────────────────

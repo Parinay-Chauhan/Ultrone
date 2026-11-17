@@ -24,9 +24,6 @@ const Header = ({ isGuest = false, onLoginClick }) => {
             U
           </div>
           Ultrone
-          {isGuest && (
-            <span className="text-[12px] text-[#5a6180] font-normal">· guest</span>
-          )}
         </div>
 
         {/* Right actions */}
